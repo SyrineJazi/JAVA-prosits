@@ -64,14 +64,14 @@ public class Employe implements Comparable<Employe>{
             return false;
         } //check if the object of comparison is even of the same class
         Employe e = (Employe) o;
-        return this.ID == e.getID() && this.nom.equals(e.getNom());
+        return this.ID == e.getID() && this.nom.equalsIgnoreCase(e.getNom());
     }
     @Override
     public String toString(){
         return "ID: "+ID+"\n" +
                 "Nom: "+nom+"\n" +
                 "Prenom: "+prenom+"\n" +
-                "Classes.Departement: "+departement+"\n" +
+                "Departement: "+departement+"\n" +
                 "Grade: "+grade;
     }
 
