@@ -39,11 +39,20 @@ public class SocieteArrayList implements IGestion<Employe> {
         this.displayEmploye();
     }
     public void trierEmployepPar_nom_departement_grade(){
-        Comparator<Employe> byName = Comparator.comparing(Employe::getNom);
+        Comparator<Employe> byName = new Comparator<Employe>() {
+            @Override
+            public int compare(Employe o1, Employe o2) {
+                return o1.getNom().compareTo(o2.getNom());
+            }
+        };
+        //Comparator<Employe> byName = Comparator.comparing(Employe::getNom);
         Comparator<Employe> byDept = Comparator.comparing(Employe::getDepartement);
         Comparator<Employe> byGrade = Comparator.comparing(Employe::getGrade);
 
         EmployeeList.sort(byName.thenComparing(byDept).thenComparing(byGrade));
         this.displayEmploye();
+    }
+    public Employe getEmploye(int index){
+        return EmployeeList.get(index);
     }
 }

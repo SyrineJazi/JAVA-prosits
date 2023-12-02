@@ -45,4 +45,18 @@ public class DepartementHashSet implements IDépartement<Departement> {
             System.out.println("Le hashCode de "+currentObj.getNom()+" est : "+currentObj.hashCode());
         }
     }
+
+    public Departement getByID(int id){
+        Departement result = null;
+        for(Departement dept : ListDepartements){
+            if(dept.getID() == id){
+                result = dept;
+                break;
+            }
+        }
+        if(result == null){
+            System.out.println("Ce departement d'ID = "+id+" n'existe pas dans le Set");
+        }
+        return result;
+    }
 }
