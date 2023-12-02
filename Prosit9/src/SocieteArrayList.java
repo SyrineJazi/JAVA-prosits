@@ -3,15 +3,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 public class SocieteArrayList implements IGestion<Employe>{
-    List<Employe> Societe = new ArrayList<>();
+    List<Employe> EmployeeList = new ArrayList<>();
     public void ajouterEmploye(Employe e){
-    Societe.add(e);
+    EmployeeList.add(e);
     }
     public boolean rechercherEmploye(String nom){
         boolean exist = false;
         int i = 0;
-        while(!exist && i < Societe.size()){
-            if(Societe.get(i).getNom().equals(nom)){
+        while(!exist && i < EmployeeList.size()){
+            if(EmployeeList.get(i).getNom().toUpperCase().equals(nom.toUpperCase())){
                 exist = true;
             }
             else {i++;}
@@ -19,24 +19,26 @@ public class SocieteArrayList implements IGestion<Employe>{
         return exist;
     }
     public boolean rechercherEmploye(Employe e){
-        return Societe.contains(e);
+        return EmployeeList.contains(e);
     }
     public void supprimerEmploye(Employe e){
-        Societe.remove(e);
+        EmployeeList.remove(e);
     }
     public void displayEmploye(){
-    for(Employe e : Societe){
+    for(Employe e : EmployeeList){
         System.out.println(e);
     }
     }
     public void trierEmployeParID(){
-        Collections.sort(Societe);
+        Collections.sort(EmployeeList);
+        this.displayEmploye();
     }
     public void trierEmployepPar_nom_departement_grade(){
         Comparator<Employe> byName = Comparator.comparing(Employe::getNom);
         Comparator<Employe> byDept = Comparator.comparing(Employe::getDepartement);
         Comparator<Employe> byGrade = Comparator.comparing(Employe::getGrade);
 
-        Societe.sort(byName.thenComparing(byDept).thenComparing(byGrade));
+        EmployeeList.sort(byName.thenComparing(byDept).thenComparing(byGrade));
+        this.displayEmploye();
     }
 }
